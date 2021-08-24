@@ -12,7 +12,10 @@ a-frente + b-frente + a-trás + b-trás
 """
 def front_back(a, b):
     # +++ SUA SOLUÇÃO +++
-    return
+    import math
+    a_ = int(len(a) / 2) if len(a) % 2 == 0 else math.ceil(len(a) / 2)
+    b_ = int(len(b) / 2) if len(b) % 2 == 0 else math.ceil(len(b) / 2)
+    return '{}{}{}{}'.format(a[:a_], b[:b_], a[a_:], b[b_:])
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---

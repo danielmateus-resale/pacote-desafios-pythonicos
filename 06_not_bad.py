@@ -11,7 +11,12 @@ Exemplo: 'The dinner is not that bad!' retorna 'The dinner is good!'
 
 def not_bad(s):
     # +++ SUA SOLUÇÃO +++
-    return
+    n = int(s.find('not'))
+    b = int(s.find('bad'))
+
+    if n < b:
+        return '{}good'.format(s[0:n])
+    return s
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---

@@ -44,27 +44,47 @@ import sys
 
 
 def mimic_dict(filename):
-  """Retorna o dicionario imitador mapeando cada palavra para a lista de
-  palavras subsequentes."""
-    # +++ SUA SOLUÇÃO +++
-  return
+    """Retorna o dicionario imitador mapeando cada palavra para a lista de
+    palavras subsequentes."""
+    words = []
+    dictonary = {}
 
+    with open(filename, "r") as fd:
+        lines = fd.read().splitlines()
+    for line in lines:
+        for word in line.split(' '):
+            words.append(word.lower())
+
+    dictonary[''] = words
+    for key, word in enumerate(words):
+        if word not in dictonary:
+            dictonary.update({word: []})
+            
+        if key >= len(words):
+            dictonary[word].append('')
+        elif words[key] not in dictonary[word]:
+            dictonary[word].append(words[key])
+        else:
+            continue
+    return dictonary
 
 def print_mimic(mimic_dict, word):
-  """Dado o dicionario imitador e a palavra inicial, imprime texto de 200 palavras."""
-    # +++ SUA SOLUÇÃO +++
-  return
+    """Dado o dicionario imitador e a palavra inicial, imprime texto de 200 palavras."""
+    generate = []
+    for i in range(0, 200):
+        generate.append(random.choice(mimic_dict[word]))
+    print(''.join(generate))
 
 
 # Chama mimic_dict() e print_mimic()
 def main():
-  if len(sys.argv) != 2:
-    print('Utilização: ./14_mimic.py file-to-read')
-    sys.exit(1)
+    if len(sys.argv) != 2:
+        print('Utilização: ./14_mimic.py file-to-read')
+        sys.exit(1)
 
-  dict = mimic_dict(sys.argv[1])
-  print_mimic(dict, '')
+    dict = mimic_dict(sys.argv[1])
+    print_mimic(dict, '')
 
 
 if __name__ == '__main__':
-  main()
+    main()

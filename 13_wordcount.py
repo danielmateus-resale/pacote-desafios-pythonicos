@@ -56,6 +56,33 @@ import sys
 
 # +++ SUA SOLUÇÃO +++
 # Defina as funções print_words(filename) e print_top(filename).
+def print_words(filename):
+    words = []
+    with open(filename, "r") as fd:
+        lines = fd.read().splitlines()
+
+    for line in lines:
+        for word in line.split(' '):
+            words.append(word.lower())
+
+    for text in list(set(words)):
+        print('{} {}'.format(text, words.count(text)))
+
+
+def print_top(filename):
+    words = []
+    with open(filename, "r") as fd:
+        lines = fd.read().splitlines()
+
+    for line in lines:
+        for index, word in enumerate(line.split(' ')):
+            if index <= 19:
+                words.append(word.lower())
+            else:
+                break
+
+    for text in list(set(words)):
+        print('{} {}'.format(text, words.count(text)))
 
 
 # A função abaixo chama print_words() ou print_top() de acordo com os
